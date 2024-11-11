@@ -91,7 +91,7 @@ To create and run a vectorizer, then query the auto-generated embeddings created
     SELECT ai.create_vectorizer(
        'blog'::regclass,
        destination => 'blog_contents_embeddings',
-       embedding => ai.embedding_openai('text-embedding-3-small', 768),
+       embedding => ai.embedding_openai('text-embedding-3-small', 1536),
        chunking => ai.chunking_recursive_character_text_splitter('contents')
     );
     ```
@@ -123,7 +123,7 @@ To create and run a vectorizer, then query the auto-generated embeddings created
     ```sql
     SELECT
         chunk,
-        embedding <=>  ai.openai_embed('text-embedding-3-small', 'good food', dimensions=>768) as distance
+        embedding <=>  ai.openai_embed('text-embedding-3-small', 'good food', dimensions=>1536) as distance
     FROM blog_contents_embeddings
     ORDER BY distance;
     ```
